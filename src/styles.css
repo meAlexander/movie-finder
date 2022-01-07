@@ -1,1 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
+html, body {
+  overflow-x: hidden;
+  background-color: #C0C0C0;
+}
+
+.title {
+  text-decoration: peru;
+  font-family: Comic Sans MS, fantasy;
+  color: #696969;
+}
+
+.title-background-decoration {
+  background-color: #D3D3D3;
+}
+
+.button-position {
+  float: right;
+}

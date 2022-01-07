@@ -1,0 +1,31 @@
+<app-navbar
+  (backToHomeEvent)="showTemplate()">
+</app-navbar>
+
+<ng-container
+  [ngTemplateOutlet]="mainTemplate">
+</ng-container>
+
+<ng-template #homePage>
+ <app-home-page
+    (goToMovieDetailsEvent)="showMovieDetailsTemplate($event)"
+    (goToAllCategoryMoviesEvent)="showAllCategoryMovieTemplate($event)">
+ </app-home-page>
+</ng-template>
+
+<ng-template #movieDetailsCard>
+  <app-movie-details-card
+    [movieId]="movieId"
+    (backToHomeEvent)="showTemplate()">
+  </app-movie-details-card>
+</ng-template>
+
+<ng-template #allMovies>
+  <app-all-movies
+    [title]="categoryTitle"
+    (emitMovieId)="showMovieDetailsTemplate($event)"
+    (backToHomeEvent)="showTemplate()">
+  </app-all-movies>
+</ng-template>
+
+<app-footer></app-footer>

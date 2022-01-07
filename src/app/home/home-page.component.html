@@ -1,0 +1,27 @@
+<div class="jumbotron">
+  <div class="container">
+    <h1 class="display-4">Find a movie</h1>
+    <p>Search for a movie using the form below:</p>
+    <form class="form-control input-lg" #form="ngForm" (ngSubmit)="search(form)">
+      <input
+        required
+        type="text"
+        class="form-control"
+        name="movie"
+        ngModel>
+      <button [disabled]="form.invalid" class="btn btn-primary mt-2">Search</button>
+    </form>
+  </div>
+</div>
+
+<div class="list-group">
+  <h1 class="">Browse Our Movies!</h1>
+</div>
+
+<div *ngFor="let movie$ of allMovies$">
+  <app-category
+    [categoryMovies]="movie$ | async"
+    (emitMovieId)="showMovieDetailsPage($event)"
+    (emitViewAllCategoryMovies)="showAllCategoryMovies($event)">
+  </app-category>
+</div>

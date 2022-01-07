@@ -1,0 +1,33 @@
+nav {
+  margin: 20px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+}
+
+.image-position {
+  text-align: center;
+}
+
+.custom-container {
+  min-height: 100vh;
+}
+
+.movie-card-width {
+  flex: 0 0 auto;
+  width: 25%;
+}
+
+@media (max-width: 852px) {
+  .movie-card-width {
+    flex: 0 0 auto;
+    width: 50%;
+  }
+}
+
+@media (max-width: 452px) {
+  .movie-card-width {
+    flex: 1 1 auto;
+    width: 75%;
+  }
+}

@@ -1,0 +1,18 @@
+<app-loading *ngIf="!categoryMovies"></app-loading>
+
+<ng-container *ngIf="categoryMovies" [ngTemplateOutlet]="category"></ng-container>
+
+<ng-template #category>
+  <div class="card mb-1 list-group-item title-background-decoration">
+    <button class="btn btn-primary mt-lg-1 button-position" (click)="showAllCategoryMovies()">View all</button>
+    <h2 class="title">{{categoryMovies[0].category}}</h2>
+  </div>
+  <div class="row">
+    <div class="movie-card-width" *ngFor="let singleMovie of categoryMovies">
+      <app-movie-card
+        [movie]="singleMovie"
+        (clickViewDetailsButton)="showMovieDetailsPage($event)">
+      </app-movie-card>
+    </div>
+  </div>
+</ng-template>

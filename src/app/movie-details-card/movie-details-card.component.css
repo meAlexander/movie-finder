@@ -1,0 +1,18 @@
+.custom-width {
+  width: 100%;
+  min-height: 100vh;
+}
+
+.item-style {
+  color: darkgrey;
+  font-family: 'georgia', cursive;
+  font-weight: bold;
+}
+
+.field {
+  color: #3a2424;
+}
+
+.field > span {
+  color: darkgrey;
+}

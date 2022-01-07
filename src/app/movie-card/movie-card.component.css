@@ -1,0 +1,36 @@
+.card-img {
+  width: 65%;
+}
+
+.movie-card-design {
+  text-align: center;
+}
+
+.title {
+  font-size: 18px;
+}
+
+.decoration {
+  padding-top: 10px;
+  font-size: 14px;
+}
+
+.decoration > span {
+  color: #af4747;
+}
+
+.button-card {
+  text-align: center;
+}
+
+.title {
+  overflow-wrap: normal;
+  background-color: aliceblue;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+a {
+  text-decoration: underline;
+}

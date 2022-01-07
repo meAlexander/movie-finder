@@ -1,0 +1,48 @@
+<ng-template #loading>
+  <app-loading></app-loading>
+</ng-template>
+
+<ng-container
+  [ngTemplateOutlet]="category">
+</ng-container>
+
+<ng-template #category>
+  <div class="card mb-1 list-group-item title-background-decoration">
+    <button class="btn btn-primary mt-lg-1 button-position" (click)="backToHome()">Back to home</button>
+    <h2 class="title">{{title}}</h2>
+  </div>
+  <div class="custom-container">
+    <div class="row" *ngIf="movies$ | async as movies; else loading">
+      <div class="movie-card-width" *ngFor="let singleMovie of movies">
+        <app-movie-card
+          [movie]="singleMovie"
+          (clickViewDetailsButton)="showMovieDetailsPage($event)">
+        </app-movie-card>
+      </div>
+      <td class="image-position" *ngIf="!movieService.TOTAL_RESULTS">
+        <h2 class="title">No records found</h2>
+      </td>
+    </div>
+
+    <nav *ngIf="movieService.TOTAL_PAGES > 1">
+      <ul class="pagination">
+        <li class="page-item">
+          <button class="page-link" id="previous" [disabled]="page===1" (click)="showPage(page=page-1)">Previous
+          </button>
+        </li>
+        <li class="page-item">
+          <button class="page-link" (click)="showPage(1)">1</button>
+        </li>
+        <li class="page-item" aria-current="page">
+          <button class="page-link" (click)="showPage(2)">2</button>
+        </li>
+        <li class="page-item">
+          <button class="page-link" (click)="showPage(3)">3</button>
+        </li>
+        <li class="page-item">
+          <button class="page-link" id="next" [disabled]="page===3" (click)="showPage(page=page+1)">Next</button>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</ng-template>

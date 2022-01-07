@@ -1,0 +1,17 @@
+footer {
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  background-color: aliceblue;
+  /*margin-top: 5px;*/
+  margin-top: auto;
+}
+
+h6 {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  color: peru;
+  font-size: 16px;
+  margin-bottom: 0;
+  padding: 12px;
+}
