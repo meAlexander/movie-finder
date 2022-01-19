@@ -36,7 +36,7 @@ export class HomePageComponent implements OnInit {
   }
 
   public search (searchForm: NgForm): void {
-    const movieSearch = searchForm.value.movie;
+    const movieSearch: string = searchForm.value.movie;
     this.showAllCategoryMovies(movieSearch);
   }
 
