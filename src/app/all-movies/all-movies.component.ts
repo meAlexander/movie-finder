@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Movie } from '../models/movie';
 import { MovieService } from '../services/movie.service';
-import { AppConst } from '../const/app-const';
+import { CategoryMovies } from '../const/category-movies';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -20,7 +20,7 @@ export class AllMoviesComponent implements OnInit {
 
   constructor (public movieService: MovieService) { }
 
-  ngOnInit (): void {
+  ngOnInit () {
     this.searchedQuery = this.title;
     this.loadMovies(this.page);
   }
@@ -40,20 +40,20 @@ export class AllMoviesComponent implements OnInit {
 
   private loadMovies (pageNumber: number): void {
     switch (this.title) {
-      case AppConst.popularMoviesTitle:
+      case CategoryMovies.popularMovies:
         this.movies$ = this.movieService.getPopularMovies(pageNumber);
         break;
-      case AppConst.inTheaterMoviesTitle:
+      case CategoryMovies.inTheaterMovies:
         this.movies$ = this.movieService.getInTheaterMovies(pageNumber);
         break;
-      case AppConst.kidsMoviesTitle:
+      case CategoryMovies.kidsMovies:
         this.movies$ = this.movieService.getPopularKidsMovies(pageNumber);
         break;
-      case AppConst.mostVotedMoviesTitle:
+      case CategoryMovies.mostVotedMovies:
         this.movies$ = this.movieService.getMostVotedMovies(pageNumber);
         break;
       default:
-        this.title = AppConst.searchedMoviesTitle;
+        this.title = CategoryMovies.searchedMovies;
         this.movies$ = this.movieService.searchMovie(this.searchedQuery, pageNumber);
         break;
     }

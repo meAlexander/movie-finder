@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Movie } from '../models/movie';
 import { map, tap } from 'rxjs/operators';
-import { AppConst } from '../const/app-const';
+import { CategoryMovies } from '../const/category-movies';
 import { ResponseAPI } from '../models/response-api';
 
 @Injectable({
@@ -28,28 +28,28 @@ export class MovieService {
   public getPopularMovies (page: number = 1): Observable<Movie[]> {
     return this.getMoviesBaseQuery(this.POPULAR, page)
       .pipe(
-        tap(movies => movies.map(movie => movie.category = AppConst.popularMoviesTitle))
+        tap(movies => movies.map(movie => movie.category = CategoryMovies.popularMovies))
       );
   }
 
   public getInTheaterMovies (page: number = 1): Observable<Movie[]> {
     return this.getMoviesBaseQuery(this.IN_THEATER, page)
       .pipe(
-        tap(movies => movies.map(movie => movie.category = AppConst.inTheaterMoviesTitle))
+        tap(movies => movies.map(movie => movie.category = CategoryMovies.inTheaterMovies))
       );
   }
 
   public getPopularKidsMovies (page: number = 1): Observable<Movie[]> {
     return this.getMoviesBaseQuery(this.KIDS, page)
       .pipe(
-        tap(movies => movies.map(movie => movie.category = AppConst.kidsMoviesTitle))
+        tap(movies => movies.map(movie => movie.category = CategoryMovies.kidsMovies))
       );
   }
 
   public getMostVotedMovies (page: number = 1): Observable<Movie[]> {
     return this.getMoviesBaseQuery(this.VOTE_COUNT, page)
       .pipe(
-        tap(movies => movies.map(movie => movie.category = AppConst.mostVotedMoviesTitle))
+        tap(movies => movies.map(movie => movie.category = CategoryMovies.mostVotedMovies))
       );
   }
 
