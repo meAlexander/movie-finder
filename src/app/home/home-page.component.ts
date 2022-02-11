@@ -17,14 +17,14 @@ export class HomePageComponent implements OnInit {
   private popularMovies$: Observable<Movie[]>;
   private inTheaterMovies$: Observable<Movie[]>;
   private popularKidsMovies$: Observable<Movie[]>;
-  private topVotedMovies$: Observable<Movie[]>;
+  private topRatedMovies$: Observable<Movie[]>;
   public allMovies$: Observable<Movie[]>[] = [];
 
   constructor (private movieService: MovieService) { }
 
   ngOnInit () {
     this.prepareMovies();
-    this.allMovies$.push(this.popularMovies$, this.inTheaterMovies$, this.popularKidsMovies$, this.topVotedMovies$);
+    this.allMovies$.push(this.popularMovies$, this.inTheaterMovies$, this.popularKidsMovies$, this.topRatedMovies$);
   }
 
   public showMovieDetailsPage (movieId: number): void {
@@ -50,7 +50,7 @@ export class HomePageComponent implements OnInit {
     this.popularKidsMovies$ = this.movieService.getPopularKidsMovies().pipe(
       map((data) => data.slice(0, 6))
     );
-    this.topVotedMovies$ = this.movieService.getMostVotedMovies().pipe(
+    this.topRatedMovies$ = this.movieService.getTopRatedMovies().pipe(
       map((data) => data.slice(0, 6))
     );
   }

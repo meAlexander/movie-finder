@@ -3,16 +3,29 @@
   min-height: 100vh;
 }
 
-.item-style {
-  color: darkgrey;
-  font-family: 'georgia', cursive;
+.button-style {
+  color: darkgray;
+  background-color: #606264;
+  border-color: #33292900;
+  font-family: "georgia", cursive;
   font-weight: bold;
 }
 
+.button-style:hover{
+  background-color: #3c424d;
+}
+
+.item-style {
+  color: #7a7474;
+  font-family: 'georgia', Calibri, serif;
+  font-weight: bold;
+  background: radial-gradient(circle, #353637 12%, rgb(57 54 62) 90%);
+}
+
 .field {
-  color: #3a2424;
+  color: #594545;
 }
 
 .field > span {
-  color: darkgrey;
+  color: #7a7474;
 }

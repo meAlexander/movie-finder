@@ -1,13 +1,22 @@
-/* You can add global styles to this file, and also import other style files */
+
 html, body {
   overflow-x: hidden;
-  background-color: #C0C0C0;
+  background: radial-gradient(circle, rgba(86,79,88,0.6646008745294993) 6%, rgb(45 46 51) 100%);
 }
 
 .title {
-  text-decoration: peru;
   font-family: Comic Sans MS, fantasy;
-  color: #696969;
+  color: #010f1b;
+}
+
+.title-background-decoration {
+  background: radial-gradient(circle, rgb(29 26 31 / 83%) 34%, rgb(68 70 82 / 85%) 100%)
+}
+
+.button-style {
+  color: #070707;
+  background-color: #606264;
+  border-color: #33292900;
 }
 
 .title-background-decoration {

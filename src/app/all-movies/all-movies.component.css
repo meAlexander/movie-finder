@@ -5,6 +5,18 @@ nav {
   justify-content: center;
 }
 
+.button-style {
+  background-color: #606264;
+  border-color: #33292900;
+  color: darkgray;
+  font-family: "georgia", cursive;
+  font-weight: bold;
+}
+
+.button-style:hover{
+  background-color: #3c424d;
+}
+
 .image-position {
   text-align: center;
 }

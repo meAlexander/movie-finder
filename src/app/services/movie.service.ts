@@ -26,31 +26,19 @@ export class MovieService {
   constructor (private httpClient: HttpClient) { }
 
   public getPopularMovies (page: number = 1): Observable<Movie[]> {
-    return this.getMoviesBaseQuery(this.POPULAR, page)
-      .pipe(
-        tap(movies => movies.map(movie => movie.category = CategoryMovies.popularMovies))
-      );
+    return this.getMoviesBaseQuery(this.POPULAR, page, CategoryMovies.popularMovies);
   }
 
   public getInTheaterMovies (page: number = 1): Observable<Movie[]> {
-    return this.getMoviesBaseQuery(this.IN_THEATER, page)
-      .pipe(
-        tap(movies => movies.map(movie => movie.category = CategoryMovies.inTheaterMovies))
-      );
+    return this.getMoviesBaseQuery(this.IN_THEATER, page, CategoryMovies.inTheaterMovies);
   }
 
   public getPopularKidsMovies (page: number = 1): Observable<Movie[]> {
-    return this.getMoviesBaseQuery(this.KIDS, page)
-      .pipe(
-        tap(movies => movies.map(movie => movie.category = CategoryMovies.kidsMovies))
-      );
+    return this.getMoviesBaseQuery(this.KIDS, page, CategoryMovies.kidsMovies);
   }
 
-  public getMostVotedMovies (page: number = 1): Observable<Movie[]> {
-    return this.getMoviesBaseQuery(this.VOTE_COUNT, page)
-      .pipe(
-        tap(movies => movies.map(movie => movie.category = CategoryMovies.mostVotedMovies))
-      );
+  public getTopRatedMovies (page: number = 1): Observable<Movie[]> {
+    return this.getMoviesBaseQuery(this.VOTE_COUNT, page, CategoryMovies.topRatedMovies);
   }
 
   public getMovieDetails (id: number): Observable<Movie> {
@@ -68,7 +56,7 @@ export class MovieService {
       );
   }
 
-  private getMoviesBaseQuery (url: string, page: number = 1): Observable<Movie[]> {
+  private getMoviesBaseQuery (url: string, page: number = 1, category: string): Observable<Movie[]> {
     return this.httpClient.get<ResponseAPI>(this.BASE_URL + url + page + this.API_KEY)
       .pipe(
         tap((data: ResponseAPI) => {
@@ -76,6 +64,7 @@ export class MovieService {
           this.TOTAL_RESULTS = data.total_results;
         }),
         map(data => data.results),
+        tap(movies => movies.map(movie => movie.category = category))
       );
   }
 }

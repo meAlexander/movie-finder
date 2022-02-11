@@ -1,21 +1,19 @@
-<div class="jumbotron">
-  <div class="container">
-    <h1 class="display-4">Find a movie</h1>
-    <p>Search for a movie using the form below:</p>
-    <form class="form-control input-lg" #form="ngForm" (ngSubmit)="search(form)">
-      <input
-        required
-        type="text"
-        class="form-control"
-        name="movie"
-        ngModel>
-      <button [disabled]="form.invalid" class="btn btn-primary mt-2">Search</button>
-    </form>
-  </div>
+<div class="container">
+  <p class="search-title">Search for a movie:</p>
+  <form class="form-control input-lg search-box" #form="ngForm" (ngSubmit)="search(form)">
+    <input
+      required
+      type="text"
+      class="form-control input"
+      name="movie"
+      placeholder="Search movie"
+      ngModel>
+    <button [disabled]="form.invalid" class="btn btn-primary mt-2 button-style">Search</button>
+  </form>
 </div>
 
 <div class="list-group">
-  <h1 class="">Browse Our Movies!</h1>
+  <h1 class="display-5 browse-title">Explore Our Movies</h1>
 </div>
 
 <div *ngFor="let movie$ of allMovies$">

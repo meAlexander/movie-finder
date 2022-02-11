@@ -49,8 +49,8 @@ export class AllMoviesComponent implements OnInit {
       case CategoryMovies.kidsMovies:
         this.movies$ = this.movieService.getPopularKidsMovies(pageNumber);
         break;
-      case CategoryMovies.mostVotedMovies:
-        this.movies$ = this.movieService.getMostVotedMovies(pageNumber);
+      case CategoryMovies.topRatedMovies:
+        this.movies$ = this.movieService.getTopRatedMovies(pageNumber);
         break;
       default:
         this.title = CategoryMovies.searchedMovies;
