@@ -13,12 +13,6 @@ html, body {
   background: radial-gradient(circle, rgb(29 26 31 / 83%) 34%, rgb(68 70 82 / 85%) 100%)
 }
 
-.button-style {
-  color: #070707;
-  background-color: #606264;
-  border-color: #33292900;
-}
-
 .title-background-decoration {
   background-color: #D3D3D3;
 }

@@ -1,19 +1,21 @@
 <div class="container">
   <p class="search-title">Search for a movie:</p>
   <form class="form-control input-lg search-box" #form="ngForm" (ngSubmit)="search(form)">
-    <input
-      required
-      type="text"
-      class="form-control input"
-      name="movie"
-      placeholder="Search movie"
-      ngModel>
-    <button [disabled]="form.invalid" class="btn btn-primary mt-2 button-style">Search</button>
+    <div class="input-group custom-input">
+      <input
+        required
+        type="text"
+        class="form-control input"
+        name="movie"
+        placeholder="Search movie"
+        ngModel>
+      <button [disabled]="form.invalid" class="btn button-style">Search</button>
+    </div>
   </form>
 </div>
 
 <div class="list-group">
-  <h1 class="display-5 browse-title">Explore Our Movies</h1>
+  <h1 class="display-5 explore-title">Explore Our Movies</h1>
 </div>
 
 <div *ngFor="let movie$ of allMovies$">

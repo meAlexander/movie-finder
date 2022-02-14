@@ -17,11 +17,11 @@ h1 {
   font-weight: bold;
 }
 
-.button-style:hover{
+.button-style:hover {
   background-color: #3c424d;
 }
 
-.browse-title {
+.explore-title {
   text-align: center;
   font-size: 1.5em;
   color: darkgrey;
@@ -31,21 +31,21 @@ h1 {
 }
 
 .input {
-  border: 1px solid #828788;
-  background: #888A8D7C;
+  border: 1px #686a6c;
   font-family: 'georgia', cursive;
   color: #AEB5BB7C;
   font-size: 1.2em;
+  background: #888A8D7C;
 }
 
 .form-control:focus {
-  color: #AEB5BB7C;
+  border: 1px #828788;
   font-family: 'georgia', cursive;
+  color: #AEB5BB7C;
   font-size: 1.6em;
-  border: 1px solid #828788;
 }
 
 .search-box {
-  background: radial-gradient(circle, rgb(145 131 149 / 0%) 12%, rgb(0 0 0 / 0%) 90%);
   border: 3px solid #3a3e41;
+  background: radial-gradient(circle, rgb(145 131 149 / 0%) 12%, rgb(0 0 0 / 0%) 90%);
 }
