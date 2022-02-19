@@ -13,8 +13,6 @@ export class MovieCardComponent implements OnInit {
   public imageUrl: string;
   public loadImage: boolean = true;
 
-  constructor () { }
-
   ngOnInit () {
     this.imageUrl = 'https://image.tmdb.org/t/p/w500/' + this.movie.poster_path;
   }

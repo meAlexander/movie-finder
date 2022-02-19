@@ -1,9 +1,9 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { MovieService } from '../services/movie.service';
-import { Movie } from '../models/movie';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { NgForm } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { take, tap } from 'rxjs/operators';
+import { MovieService } from '../services/movie.service';
+import { Category } from '../models/Category';
 
 @Component({
   selector: 'app-home-page',
@@ -11,47 +11,55 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./home-page.component.css']
 })
 export class HomePageComponent implements OnInit {
-  @Output() public goToMovieDetailsEvent = new EventEmitter();
-  @Output() public goToAllCategoryMoviesEvent = new EventEmitter();
+  @Output() public goToMovieDetailsEvent = new EventEmitter<number>();
+  @Output() public goToAllMoviesEvent = new EventEmitter<string>();
 
-  private popularMovies$: Observable<Movie[]>;
-  private inTheaterMovies$: Observable<Movie[]>;
-  private popularKidsMovies$: Observable<Movie[]>;
-  private topVotedMovies$: Observable<Movie[]>;
-  public allMovies$: Observable<Movie[]>[] = [];
+  private popularMovies$: Observable<Category>;
+  private inTheaterMovies$: Observable<Category>;
+  private popularKidsMovies$: Observable<Category>;
+  private topRatedMovies$: Observable<Category>;
+  public allMovies$: Observable<Category>[] = [];
 
   constructor (private movieService: MovieService) { }
 
   ngOnInit () {
     this.prepareMovies();
-    this.allMovies$.push(this.popularMovies$, this.inTheaterMovies$, this.popularKidsMovies$, this.topVotedMovies$);
+    this.allMovies$.push(this.popularMovies$, this.inTheaterMovies$, this.popularKidsMovies$, this.topRatedMovies$);
   }
 
   public showMovieDetailsPage (movieId: number): void {
     this.goToMovieDetailsEvent.emit(movieId);
   }
 
-  public showAllCategoryMovies (categoryTitle: string): void {
-    this.goToAllCategoryMoviesEvent.emit(categoryTitle);
+  public showAllMovies (categoryTitle: string): void {
+    this.goToAllMoviesEvent.emit(categoryTitle);
   }
 
   public search (searchForm: NgForm): void {
     const movieSearch: string = searchForm.value.movie;
-    this.showAllCategoryMovies(movieSearch);
+    this.showAllMovies(movieSearch);
   }
 
   private prepareMovies (): void {
-    this.popularMovies$ = this.movieService.getPopularMovies().pipe(
-      map((data) => data.slice(0, 6))
-    );
-    this.inTheaterMovies$ = this.movieService.getInTheaterMovies().pipe(
-      map((data) => data.slice(0, 6))
-    );
-    this.popularKidsMovies$ = this.movieService.getPopularKidsMovies().pipe(
-      map((data) => data.slice(0, 6))
-    );
-    this.topVotedMovies$ = this.movieService.getMostVotedMovies().pipe(
-      map((data) => data.slice(0, 6))
-    );
+    this.popularMovies$ = this.movieService.getPopularMovies()
+      .pipe(
+        take(1),
+        tap(data => data.movies = data.movies.slice(0, 6))
+      );
+    this.inTheaterMovies$ = this.movieService.getInTheaterMovies()
+      .pipe(
+        take(1),
+        tap(data => data.movies = data.movies.slice(0, 6))
+      );
+    this.popularKidsMovies$ = this.movieService.getPopularKidsMovies()
+      .pipe(
+        take(1),
+        tap(data => data.movies = data.movies.slice(0, 6))
+      );
+    this.topRatedMovies$ = this.movieService.getTopRatedMovies()
+      .pipe(
+        take(1),
+        tap(data => data.movies = data.movies.slice(0, 6))
+      );
   }
 }

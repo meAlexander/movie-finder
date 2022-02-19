@@ -11,17 +11,15 @@ export class MovieDetailsCardComponent implements OnInit {
   @Input() public movieId: number;
   @Output() public backToHomeEvent = new EventEmitter();
 
-  public movieDetails: Movie;
+  public movie: Movie;
   public imageUrl: string;
-  public loading: boolean = true;
 
   constructor (private movieService: MovieService) {}
 
   ngOnInit () {
-    this.movieService.getMovieDetails(this.movieId).subscribe((data) => {
-      this.movieDetails = data;
-      this.imageUrl = 'https://image.tmdb.org/t/p/w500/' + this.movieDetails.poster_path;
-      this.loading = false ;
+    this.movieService.getMovieDetails(this.movieId).subscribe((data: Movie) => {
+      this.movie = data;
+      this.imageUrl = 'https://image.tmdb.org/t/p/w500/' + this.movie.poster_path;
     });
   }
 

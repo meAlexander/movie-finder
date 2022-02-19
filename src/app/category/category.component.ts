@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Movie } from '../models/movie';
+import { Category } from '../models/Category';
+import { Observable } from 'rxjs';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-category',
@@ -7,17 +9,17 @@ import { Movie } from '../models/movie';
   styleUrls: ['./category.component.css']
 })
 export class CategoryComponent {
-  @Input() public categoryMovies: Movie[];
+  @Input() public category$: Observable<Category>;
   @Output() public emitMovieId = new EventEmitter<number>();
   @Output() public emitViewAllCategoryMovies = new EventEmitter<string>();
-
-  constructor () { }
 
   public showMovieDetailsPage (movieId: number): void {
     this.emitMovieId.emit(movieId);
   }
 
   public showAllCategoryMovies (): void {
-    this.emitViewAllCategoryMovies.emit(this.categoryMovies[0].category);
+    this.category$.pipe(take(1)).subscribe((category) => {
+      this.emitViewAllCategoryMovies.emit(category.title);
+    });
   }
 }

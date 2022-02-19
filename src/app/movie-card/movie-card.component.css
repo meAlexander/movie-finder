@@ -8,19 +8,32 @@
 
 .title {
   font-size: 18px;
+  background: radial-gradient(circle, rgb(63 59 69 / 78%) 6%, rgba(97,99,113,0.846673703661152) 67%)
 }
 
 .decoration {
-  padding-top: 10px;
-  font-size: 14px;
+  padding-top: 8px;
+  font-size: 16px;
 }
 
 .decoration > span {
-  color: #af4747;
+  color: #4b2b2b;
 }
 
 .button-card {
   text-align: center;
+}
+
+.button-style {
+  color: darkgray;
+  background-color: #606264;
+  border-color: #33292900;
+  font-family: "georgia", cursive;
+  font-weight: bold;
+}
+
+.button-style:hover{
+  background-color: #3c424d;
 }
 
 .title {
@@ -31,6 +44,6 @@
   text-overflow: ellipsis;
 }
 
-a {
-  text-decoration: underline;
+.card-color {
+  background: radial-gradient(circle, rgb(177 165 180) 12%, rgb(4 3 3 / 33%) 90%)
 }

@@ -1,19 +1,17 @@
-<app-loading *ngIf="!movie"></app-loading>
-
-<ng-container *ngIf="movie" [ngTemplateOutlet]="movieCard"></ng-container>
-
-<ng-template #movieCard>
-  <div class="card mb-1">
-    <h2 class="card-header title">{{movie.title}}</h2>
-    <div class="card-body movie-card-design">
-      <img class="card-img" [src]="imageUrl" (load)="loadingImage()" onerror="this.src='assets/img-not-found.png'" alt="">
-      <app-loading *ngIf="loadImage"></app-loading>
-      <h6 class="decoration">Release date:
-        <span>{{movie.release_date}}</span>
-      </h6>
-    </div>
-    <div class="card-footer button-card">
-      <button class="btn btn-primary" [id]="movie.id" (click)="clickViewDetails()">View details</button>
-    </div>
-  </div>
+<ng-template #loading>
+  <app-loading></app-loading>
 </ng-template>
+
+<div *ngIf="movie; else loading" class="card mb-1 card-color">
+  <h2 class="card-header title">{{movie.title}}</h2>
+  <div class="card-body movie-card-design">
+    <img class="card-img" [src]="imageUrl" (load)="loadingImage()" onerror="this.src='assets/img-not-found.png'" alt="">
+    <app-loading *ngIf="loadImage"></app-loading>
+    <h6 class="decoration">Release date:
+      <span>{{movie.release_date}}</span>
+    </h6>
+  </div>
+  <div class="card-footer button-card">
+    <button class="btn btn-primary button-style" [id]="movie.id" (click)="clickViewDetails()">View details</button>
+  </div>
+</div>

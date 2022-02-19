@@ -3,6 +3,18 @@
   width: 16.66666667%;
 }
 
+.button-style {
+  background-color: #606264;
+  border-color: #33292900;
+  color: darkgray;
+  font-family: "georgia", cursive;
+  font-weight: bold;
+}
+
+.button-style:hover{
+  background-color: #3c424d;
+}
+
 @media (max-width: 1272px) {
   .movie-card-width {
     flex: 0 0 auto;
