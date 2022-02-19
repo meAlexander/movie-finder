@@ -15,8 +15,6 @@ export class LayoutComponent implements OnInit {
   public movieId: number;
   public categoryTitle: string;
 
-  constructor () { }
-
   ngOnInit () {
     this.showTemplate();
   }

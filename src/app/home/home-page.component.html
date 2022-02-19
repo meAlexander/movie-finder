@@ -20,8 +20,8 @@
 
 <div *ngFor="let movie$ of allMovies$">
   <app-category
-    [categoryMovies]="movie$ | async"
+    [category$]="movie$"
     (emitMovieId)="showMovieDetailsPage($event)"
-    (emitViewAllCategoryMovies)="showAllCategoryMovies($event)">
+    (emitViewAllCategoryMovies)="showAllMovies($event)">
   </app-category>
 </div>

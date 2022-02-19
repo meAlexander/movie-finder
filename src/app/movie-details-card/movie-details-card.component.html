@@ -1,33 +1,31 @@
-<app-loading *ngIf="loading"></app-loading>
+<ng-template #loading>
+  <app-loading></app-loading>
+</ng-template>
 
-<ng-container *ngIf="!loading" [ngTemplateOutlet]="card"></ng-container>
-
-<ng-template #card>
-  <div class="container custom-width">
-    <div class="card">
-      <h2 class="card-header title title-background-decoration">{{movieDetails.title}}</h2>
-      <ul class="list-group">
-        <li class="list-group-item item-style" *ngIf="movieDetails.genres.length">
+<div *ngIf="movie; else loading" class="container custom-width">
+  <div class="card">
+    <h2 class="card-header title title-background-decoration">{{movie.title}}</h2>
+    <ul class="list-group">
+      <li class="list-group-item item-style" *ngIf="movie.genres.length">
           <span class="field">Genres:
-            <span class="genres" *ngFor="let genre of movieDetails.genres">
+            <span class="genres" *ngFor="let genre of movie.genres">
               {{genre.name}}
             </span>
           </span>
-        </li>
-        <li class="list-group-item item-style">
-          <span class="field">Release Date:</span> {{movieDetails.release_date}}
-        </li>
-        <li class="list-group-item item-style">
-          <span class="field">Overview:</span> {{movieDetails.overview}}
-        </li>
-        <li class="list-group-item item-style" *ngIf="movieDetails.homepage">
-          <a class="field" target="_blank" href="{{movieDetails.homepage}}">
-            Click here to learn more about {{movieDetails.title}}
-          </a>
-        </li>
-      </ul>
-      <button class="btn btn-primary button-style" (click)="backToHome()">Back to home</button>
-      <img class="card-img" src="{{imageUrl}}" onerror="this.src='assets/img-not-found.png'" alt="">
-    </div>
+      </li>
+      <li class="list-group-item item-style">
+        <span class="field">Release Date:</span> {{movie.release_date}}
+      </li>
+      <li class="list-group-item item-style">
+        <span class="field">Overview:</span> {{movie.overview}}
+      </li>
+      <li class="list-group-item item-style" *ngIf="movie.homepage">
+        <a class="field" target="_blank" href="{{movie.homepage}}">
+          Click here to learn more about {{movie.title}}
+        </a>
+      </li>
+    </ul>
+    <button class="btn btn-primary button-style" (click)="backToHome()">Back to home</button>
+    <img class="card-img" src="{{imageUrl}}" onerror="this.src='assets/img-not-found.png'" alt="">
   </div>
-</ng-template>
+</div>
