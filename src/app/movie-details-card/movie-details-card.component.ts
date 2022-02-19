@@ -1,6 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { MovieService } from '../services/movie.service';
+import { take } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 import { Movie } from '../models/movie';
+import { MovieService } from '../services/movie.service';
+import { Category } from '../models/Category';
 
 @Component({
   selector: 'app-movie-details-card',
@@ -9,7 +12,8 @@ import { Movie } from '../models/movie';
 })
 export class MovieDetailsCardComponent implements OnInit {
   @Input() public movieId: number;
-  @Output() public backToHomeEvent = new EventEmitter();
+  @Input() public category$: Observable<Category>;
+  @Output() public emitBack = new EventEmitter<Observable<Category>>();
 
   public movie: Movie;
   public imageUrl: string;
@@ -17,13 +21,15 @@ export class MovieDetailsCardComponent implements OnInit {
   constructor (private movieService: MovieService) {}
 
   ngOnInit () {
-    this.movieService.getMovieDetails(this.movieId).subscribe((data: Movie) => {
-      this.movie = data;
-      this.imageUrl = 'https://image.tmdb.org/t/p/w500/' + this.movie.poster_path;
-    });
+    this.movieService.getMovieDetails(this.movieId)
+      .pipe(take(1))
+      .subscribe((data: Movie) => {
+        this.movie = data;
+        this.imageUrl = 'https://image.tmdb.org/t/p/w500/' + this.movie.poster_path;
+      });
   }
 
-  public backToHome (): void {
-    this.backToHomeEvent.emit();
+  public back (): void {
+    this.emitBack.emit(this.category$);
   }
 }

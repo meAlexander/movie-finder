@@ -1,61 +1,32 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { MovieService } from '../services/movie.service';
-import { MovieCategory } from '../constants/movie-category';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Category } from '../models/Category';
+import { MovieService } from '../services/movie.service';
 
 @Component({
   selector: 'app-all-movies',
   templateUrl: './all-movies.component.html',
   styleUrls: ['./all-movies.component.css']
 })
-export class AllMoviesComponent implements OnInit {
+export class AllMoviesComponent {
   @Input() public page: number = 1;
-  @Input() public categoryTitle: string;
-  @Output() public emitMovieId = new EventEmitter<number>();
+  @Input() public category$: Observable<Category>;
+  @Output() public goToMovieDetailsEvent = new EventEmitter();
   @Output() public backToHomeEvent = new EventEmitter();
 
-  public category$: Observable<Category>;
-  private searchedQuery: string;
-
-  constructor (public movieService: MovieService) { }
-
-  ngOnInit () {
-    this.searchedQuery = this.categoryTitle;
-    this.loadMovies(this.page);
+  constructor (private movieService: MovieService) {
   }
 
   public showMovieDetailsPage (movieId: number): void {
-    this.emitMovieId.emit(movieId);
+    this.goToMovieDetailsEvent.emit({ movieId, category: this.category$ });
   }
 
   public showPage (page: number): void {
     this.page = page;
-    this.loadMovies(page);
+    // this.category$ = this.movieService.getMoviesBaseQuery(page);
   }
 
   public backToHome (): void {
     this.backToHomeEvent.emit();
-  }
-
-  private loadMovies (pageNumber: number): void {
-    switch (this.categoryTitle) {
-      case MovieCategory.popularMovies:
-        this.category$ = this.movieService.getPopularMovies(pageNumber);
-        break;
-      case MovieCategory.inTheaterMovies:
-        this.category$ = this.movieService.getInTheaterMovies(pageNumber);
-        break;
-      case MovieCategory.kidsMovies:
-        this.category$ = this.movieService.getPopularKidsMovies(pageNumber);
-        break;
-      case MovieCategory.topRatedMovies:
-        this.category$ = this.movieService.getTopRatedMovies(pageNumber);
-        break;
-      default:
-        this.categoryTitle = MovieCategory.searchedMovies;
-        this.category$ = this.movieService.searchMovie(this.searchedQuery, pageNumber);
-        break;
-    }
   }
 }

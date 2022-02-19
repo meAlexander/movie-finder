@@ -5,4 +5,5 @@ export class Category {
   movies: Movie[];
   totalPages: number;
   totalResults: number;
+  url: string;
 }

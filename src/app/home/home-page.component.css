@@ -37,6 +37,13 @@ h1 {
   font-size: 1.2em;
   background: #888A8D7C;
 }
+.form-control::placeholder {
+  color: #878f8f;
+}
+
+.button-style:disabled {
+  color: #a3afaf;
+}
 
 .form-control:focus {
   border: 1px #828788;

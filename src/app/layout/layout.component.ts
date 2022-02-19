@@ -1,4 +1,6 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Category } from '../models/Category';
 
 @Component({
   selector: 'app-layout',
@@ -13,7 +15,7 @@ export class LayoutComponent implements OnInit {
   @ViewChild('allMovies', { static: true }) private readonly allMoviesTemplate: TemplateRef<any>;
 
   public movieId: number;
-  public categoryTitle: string;
+  public category$: Observable<Category>;
 
   ngOnInit () {
     this.showTemplate();
@@ -27,13 +29,22 @@ export class LayoutComponent implements OnInit {
     this._mainTemplate = templateRef;
   }
 
-  public showMovieDetailsTemplate (movieId: number): void {
-    this.movieId = movieId;
+  public showMovieDetailsTemplate (event: { movieId: number, category: Observable<Category> }): void {
+    this.movieId = event.movieId;
+    this.category$ = event.category;
     this.showTemplate(this.movieDetailsCardTemplate);
   }
 
-  public showAllCategoryMovieTemplate (categoryTitle: string): void {
-    this.categoryTitle = categoryTitle;
+  public showAllCategoryMoviesTemplate (category$: Observable<Category>): void {
+    this.category$ = category$;
     this.showTemplate(this.allMoviesTemplate);
+  }
+
+  public backToPreviousPage (category: Observable<Category>): void {
+    if (!category) {
+      this.showTemplate();
+      return;
+    }
+    this.showAllCategoryMoviesTemplate(category);
   }
 }

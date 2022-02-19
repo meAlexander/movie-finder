@@ -1,16 +1,21 @@
-footer {
+.copyright-area {
   position: relative;
   bottom: 0;
   width: 100%;
-  background-color: aliceblue;
+  background-color: #363737;
   margin-top: auto;
 }
 
-h6 {
+.footer-copyright {
   font-family: Arial, sans-serif;
-  text-align: center;
-  color: peru;
+  color: #b1acac;
   font-size: 16px;
   margin-bottom: 0;
   padding: 12px;
+  text-align: center;
+}
+
+.footer-contact {
+  color: cadetblue;
+  text-align: center;
 }

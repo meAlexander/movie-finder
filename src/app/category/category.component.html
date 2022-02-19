@@ -8,7 +8,7 @@
     <h2 class="title">{{category.title}}</h2>
   </div>
   <div class="row">
-    <div class="movie-card-width" *ngFor="let singleMovie of category.movies">
+    <div class="movie-card-width" *ngFor="let singleMovie of category.movies | slice:0:6">
       <app-movie-card
         [movie]="singleMovie"
         (clickViewDetailsButton)="showMovieDetailsPage($event)">

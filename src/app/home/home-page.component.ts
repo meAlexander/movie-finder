@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { take, tap } from 'rxjs/operators';
+import { take } from 'rxjs/operators';
 import { MovieService } from '../services/movie.service';
 import { Category } from '../models/Category';
 
@@ -11,8 +11,8 @@ import { Category } from '../models/Category';
   styleUrls: ['./home-page.component.css']
 })
 export class HomePageComponent implements OnInit {
-  @Output() public goToMovieDetailsEvent = new EventEmitter<number>();
-  @Output() public goToAllMoviesEvent = new EventEmitter<string>();
+  @Output() public goToMovieDetailsEvent = new EventEmitter();
+  @Output() public goToAllMoviesEvent = new EventEmitter<Observable<Category>>();
 
   private popularMovies$: Observable<Category>;
   private inTheaterMovies$: Observable<Category>;
@@ -28,38 +28,27 @@ export class HomePageComponent implements OnInit {
   }
 
   public showMovieDetailsPage (movieId: number): void {
-    this.goToMovieDetailsEvent.emit(movieId);
+    this.goToMovieDetailsEvent.emit({ movieId, category: undefined});
   }
 
-  public showAllMovies (categoryTitle: string): void {
-    this.goToAllMoviesEvent.emit(categoryTitle);
+  public showAllMovies (category$: Observable<Category>): void {
+    this.goToAllMoviesEvent.emit(category$);
   }
 
   public search (searchForm: NgForm): void {
     const movieSearch: string = searchForm.value.movie;
-    this.showAllMovies(movieSearch);
+    const searchedMovie$: Observable<Category> = this.movieService.searchMovie(movieSearch);
+    this.showAllMovies(searchedMovie$);
   }
 
   private prepareMovies (): void {
     this.popularMovies$ = this.movieService.getPopularMovies()
-      .pipe(
-        take(1),
-        tap(data => data.movies = data.movies.slice(0, 6))
-      );
+      .pipe(take(1));
     this.inTheaterMovies$ = this.movieService.getInTheaterMovies()
-      .pipe(
-        take(1),
-        tap(data => data.movies = data.movies.slice(0, 6))
-      );
+      .pipe(take(1));
     this.popularKidsMovies$ = this.movieService.getPopularKidsMovies()
-      .pipe(
-        take(1),
-        tap(data => data.movies = data.movies.slice(0, 6))
-      );
+      .pipe(take(1));
     this.topRatedMovies$ = this.movieService.getTopRatedMovies()
-      .pipe(
-        take(1),
-        tap(data => data.movies = data.movies.slice(0, 6))
-      );
+      .pipe(take(1));
   }
 }

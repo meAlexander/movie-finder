@@ -9,21 +9,22 @@
 <ng-template #homePage>
  <app-home-page
     (goToMovieDetailsEvent)="showMovieDetailsTemplate($event)"
-    (goToAllMoviesEvent)="showAllCategoryMovieTemplate($event)">
+    (goToAllMoviesEvent)="showAllCategoryMoviesTemplate($event)">
  </app-home-page>
 </ng-template>
 
 <ng-template #movieDetailsCard>
   <app-movie-details-card
     [movieId]="movieId"
-    (backToHomeEvent)="showTemplate()">
+    [category$]="category$"
+    (emitBack)="backToPreviousPage($event)">
   </app-movie-details-card>
 </ng-template>
 
 <ng-template #allMovies>
   <app-all-movies
-    [categoryTitle]="categoryTitle"
-    (emitMovieId)="showMovieDetailsTemplate($event)"
+    [category$]="category$"
+    (goToMovieDetailsEvent)="showMovieDetailsTemplate($event)"
     (backToHomeEvent)="showTemplate()">
   </app-all-movies>
 </ng-template>

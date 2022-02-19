@@ -8,8 +8,6 @@ import { Component, EventEmitter, Output } from '@angular/core';
 export class NavbarComponent {
   @Output() public backToHomeEvent = new EventEmitter();
 
-  constructor () { }
-
   public backToHome (): void {
     this.backToHomeEvent.emit();
   }
