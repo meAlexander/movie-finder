@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Category } from '../models/Category';
 import { MovieService } from '../services/movie.service';
+import { CategoryMovieMetadata } from '../constants/category-movie-metadata';
 
 @Component({
   selector: 'app-all-movies',
@@ -23,7 +24,8 @@ export class AllMoviesComponent {
 
   public showPage (page: number): void {
     this.page = page;
-    this.category$ = this.movieService.getMoviesBaseQuery(page);
+    const categoryMetadata: CategoryMovieMetadata = this.movieService.categoryConfig[this.movieService.lastCategoryName];
+    this.category$ = this.movieService.getMoviesBaseQuery(page, categoryMetadata);
   }
 
   public backToHome (): void {

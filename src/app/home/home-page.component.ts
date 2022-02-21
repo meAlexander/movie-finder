@@ -12,7 +12,7 @@ import { Category } from '../models/Category';
 })
 export class HomePageComponent implements OnInit {
   @Output() public goToMovieDetailsEvent = new EventEmitter();
-  @Output() public goToAllMoviesEvent = new EventEmitter<Observable<Category>>();
+  @Output() public goToCategoryMoviesEvent = new EventEmitter<Observable<Category>>();
 
   private popularMovies$: Observable<Category>;
   private inTheaterMovies$: Observable<Category>;
@@ -31,14 +31,14 @@ export class HomePageComponent implements OnInit {
     this.goToMovieDetailsEvent.emit({ movieId, category: undefined});
   }
 
-  public showAllMoviesPage (category$: Observable<Category>): void {
-    this.goToAllMoviesEvent.emit(category$);
+  public showCategoryMoviesPage (category$: Observable<Category>): void {
+    this.goToCategoryMoviesEvent.emit(category$);
   }
 
   public searchMovie (searchForm: NgForm): void {
     const movieSearch: string = searchForm.value.movie;
     const searchedMovie$: Observable<Category> = this.movieService.searchMovie(movieSearch);
-    this.showAllMoviesPage(searchedMovie$);
+    this.showCategoryMoviesPage(searchedMovie$);
   }
 
   private prepareMovies (): void {
