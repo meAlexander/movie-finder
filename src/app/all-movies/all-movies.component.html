@@ -4,15 +4,19 @@
 
 <div *ngIf="category$ | async as category; else loading">
   <div class="card mb-1 list-group-item title-background-decoration">
-    <button class="btn btn-primary mt-lg-1 button-position button-style" (click)="backToHome()">Back to home</button>
-    <h2 class="title">{{category.title}}</h2>
+    <button
+      class="btn btn-primary mt-lg-1 button-position button-style"
+      (click)="backToHome()"
+    >Back to home
+    </button>
+    <h2 class="title">{{category.categoryName}}</h2>
   </div>
   <div class="custom-container">
     <div class="row">
       <div class="movie-card-width" *ngFor="let singleMovie of category.movies">
         <app-movie-card
           [movie]="singleMovie"
-          (clickViewDetailsButton)="showMovieDetailsPage($event)">
+          (emitMovieId)="showMovieDetailsPage($event)">
         </app-movie-card>
       </div>
       <td class="image-position" *ngIf="!category.totalResults">
@@ -23,20 +27,21 @@
     <nav *ngIf="category.totalPages > 1">
       <ul class="pagination">
         <li class="page-item">
-          <button class="page-link" id="previous" [disabled]="page===1" (click)="showPage(page=page-1)">Previous
-          </button>
+          <button class="page-link" id="previous" [disabled]="page===1" (click)="showPage(page=page-1)"
+          >Previous</button>
         </li>
-        <li class="page-item">
+        <li class="page-item" *ngIf="category.totalPages >= 1">
           <button class="page-link" (click)="showPage(1)">1</button>
         </li>
-        <li class="page-item" aria-current="page">
+        <li class="page-item" aria-current="page" *ngIf="category.totalPages >= 2">
           <button class="page-link" (click)="showPage(2)">2</button>
         </li>
-        <li class="page-item">
+        <li class="page-item" *ngIf="category.totalPages >= 3">
           <button class="page-link" (click)="showPage(3)">3</button>
         </li>
-        <li class="page-item">
-          <button class="page-link" id="next" [disabled]="page===3" (click)="showPage(page=page+1)">Next</button>
+        <li class="page-item" *ngIf="category.totalPages > 3">
+          <button class="page-link" id="next" [disabled]="page===3" (click)="showPage(page=page+1)"
+          >Next</button>
         </li>
       </ul>
     </nav>

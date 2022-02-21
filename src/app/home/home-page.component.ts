@@ -31,14 +31,14 @@ export class HomePageComponent implements OnInit {
     this.goToMovieDetailsEvent.emit({ movieId, category: undefined});
   }
 
-  public showAllMovies (category$: Observable<Category>): void {
+  public showAllMoviesPage (category$: Observable<Category>): void {
     this.goToAllMoviesEvent.emit(category$);
   }
 
-  public search (searchForm: NgForm): void {
+  public searchMovie (searchForm: NgForm): void {
     const movieSearch: string = searchForm.value.movie;
     const searchedMovie$: Observable<Category> = this.movieService.searchMovie(movieSearch);
-    this.showAllMovies(searchedMovie$);
+    this.showAllMoviesPage(searchedMovie$);
   }
 
   private prepareMovies (): void {

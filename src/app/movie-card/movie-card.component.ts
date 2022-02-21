@@ -8,7 +8,7 @@ import { Movie } from '../models/movie';
 })
 export class MovieCardComponent implements OnInit {
   @Input() public movie: Movie;
-  @Output() public clickViewDetailsButton = new EventEmitter<number>();
+  @Output() public emitMovieId = new EventEmitter<number>();
 
   public imageUrl: string;
   public loadImage: boolean = true;
@@ -17,8 +17,8 @@ export class MovieCardComponent implements OnInit {
     this.imageUrl = 'https://image.tmdb.org/t/p/w500/' + this.movie.poster_path;
   }
 
-  public clickViewDetails (): void {
-    this.clickViewDetailsButton.emit(this.movie.id);
+  public clickViewMovieDetails (): void {
+    this.emitMovieId.emit(this.movie.id);
   }
 
   public loadingImage (): void {

@@ -23,7 +23,7 @@ export class AllMoviesComponent {
 
   public showPage (page: number): void {
     this.page = page;
-    // this.category$ = this.movieService.getMoviesBaseQuery(page);
+    this.category$ = this.movieService.getMoviesBaseQuery(page);
   }
 
   public backToHome (): void {

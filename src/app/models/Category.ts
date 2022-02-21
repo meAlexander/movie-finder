@@ -1,7 +1,7 @@
 import { Movie } from './movie';
 
 export class Category {
-  title: string;
+  categoryName: string;
   movies: Movie[];
   totalPages: number;
   totalResults: number;

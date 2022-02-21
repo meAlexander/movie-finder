@@ -10,13 +10,13 @@ import { Category } from '../models/Category';
 export class CategoryComponent {
   @Input() public category$: Observable<Category>;
   @Output() public emitMovieId = new EventEmitter<number>();
-  @Output() public emitViewAllCategoryMovies = new EventEmitter<Observable<Category>>();
+  @Output() public emitCategory = new EventEmitter<Observable<Category>>();
 
   public showMovieDetailsPage (movieId: number): void {
     this.emitMovieId.emit(movieId);
   }
 
-  public showAllCategoryMovies (): void {
-    this.emitViewAllCategoryMovies.emit(this.category$);
+  public showCategoryMoviesPage (): void {
+    this.emitCategory.emit(this.category$);
   }
 }

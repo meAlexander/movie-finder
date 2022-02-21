@@ -12,7 +12,7 @@ import { Category } from '../models/Category';
 })
 export class MovieService {
   public lastUrl: string;
-  public lastTitle: string;
+  public lastCategory: string;
   private readonly BASE_URL: string = 'https://api.themoviedb.org/3';
 
   private readonly API_KEY: string = '&api_key=fd2b31ba31547fa1ed49129738f2d156';
@@ -26,36 +26,37 @@ export class MovieService {
 
   constructor (private httpClient: HttpClient) { }
 
-  public getPopularMovies (page: number = 1): Observable<Category> {
-    const url: string = this.POPULAR + page + this.API_KEY;
-    return this.getMoviesBaseQuery(url, MovieCategory.popularMovies);
+  public getPopularMovies (): Observable<Category> {
+    return this.getMoviesBaseQuery(undefined, this.POPULAR, MovieCategory.popularMovies);
   }
 
-  public getInTheaterMovies (page: number = 1): Observable<Category> {
-    const url: string = this.IN_THEATER + page + this.API_KEY;
-    return this.getMoviesBaseQuery(url, MovieCategory.inTheaterMovies);
+  public getInTheaterMovies (): Observable<Category> {
+    return this.getMoviesBaseQuery(undefined, this.IN_THEATER, MovieCategory.inTheaterMovies);
   }
 
-  public getPopularKidsMovies (page: number = 1): Observable<Category> {
-    const url: string = this.KIDS + page + this.API_KEY;
-    return this.getMoviesBaseQuery(url, MovieCategory.kidsMovies);
+  public getPopularKidsMovies (): Observable<Category> {
+    return this.getMoviesBaseQuery(undefined, this.KIDS, MovieCategory.kidsMovies);
   }
 
-  public getTopRatedMovies (page: number = 1): Observable<Category> {
-    const url: string = this.VOTE_COUNT + page + this.API_KEY;
-    return this.getMoviesBaseQuery(url, MovieCategory.topRatedMovies);
+  public getTopRatedMovies (): Observable<Category> {
+    return this.getMoviesBaseQuery(undefined, this.VOTE_COUNT, MovieCategory.topRatedMovies);
   }
 
-  public searchMovie (movieSearch: string, page: number = 1): Observable<Category> {
-    const url: string = '/search/movie' + this.API_KEY_ALT + `&query=${movieSearch}&page=${page}`;
-    return this.getMoviesBaseQuery(url, 'Searched movies');
+  public searchMovie (movieSearch: string): Observable<Category> {
+    return this.getMoviesBaseQuery(undefined, movieSearch, 'Searched movies');
   }
 
   public getMovieDetails (id: number): Observable<Movie> {
     return this.httpClient.get<Movie>(this.BASE_URL + `/movie/${id}` + this.API_KEY_ALT);
   }
 
-  public getMoviesBaseQuery (url: string = this.lastUrl, genre: string = this.lastTitle): Observable<Category> {
+  public getMoviesBaseQuery (page: number = 1, movieUrl: string = this.lastUrl, categoryName: string = this.lastCategory): Observable<Category> {
+    let url: string;
+    if (categoryName === 'Searched movies') {
+      url = '/search/movie' + this.API_KEY_ALT + `&query=${movieUrl}&page=${page}`;
+    } else {
+      url = movieUrl + page + this.API_KEY;
+    }
     return this.httpClient.get<ResponseAPI>(this.BASE_URL + url)
       .pipe(
         map((data: ResponseAPI) => {
@@ -63,9 +64,9 @@ export class MovieService {
           category.movies = data.results;
           category.totalPages = data.total_pages;
           category.totalResults = data.total_results;
-          category.title = genre;
+          category.categoryName = categoryName;
           this.lastUrl = url;
-          this.lastTitle = genre;
+          this.lastCategory = categoryName;
           return category;
         }));
   }
