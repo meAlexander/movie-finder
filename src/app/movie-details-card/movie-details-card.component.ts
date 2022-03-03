@@ -1,9 +1,10 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { take } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+
 import { Movie } from '../models/movie';
 import { MovieService } from '../services/movie.service';
-import { Category } from '../models/Category';
+import { Category } from '../models/category';
 
 @Component({
   selector: 'app-movie-details-card',
@@ -13,7 +14,7 @@ import { Category } from '../models/Category';
 export class MovieDetailsCardComponent implements OnInit {
   @Input() public movieId: number;
   @Input() public category$: Observable<Category>;
-  @Output() public emitBack = new EventEmitter<Observable<Category>>();
+  @Output() public emitCategory = new EventEmitter<Observable<Category>>();
 
   public movie: Movie;
   public imageUrl: string;
@@ -30,6 +31,10 @@ export class MovieDetailsCardComponent implements OnInit {
   }
 
   public back (): void {
-    this.emitBack.emit(this.category$);
+    this.emitCategory.emit(this.category$);
+  }
+
+  showCategoryMovies (category: Observable<Category>): void {
+    this.emitCategory.emit(category);
   }
 }

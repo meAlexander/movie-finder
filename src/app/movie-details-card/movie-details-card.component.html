@@ -2,30 +2,41 @@
   <app-loading></app-loading>
 </ng-template>
 
-<div *ngIf="movie; else loading" class="container custom-width">
-  <div class="card">
-    <h2 class="card-header title title-background-decoration">{{movie.title}}</h2>
-    <ul class="list-group">
-      <li class="list-group-item item-style" *ngIf="movie.genres.length">
+<div *ngIf="movie; else loading" class="container">
+  <div class="row">
+
+    <div class="col-lg-8">
+      <h2 class="title">Movie details</h2>
+      <div class="card">
+        <h2 class="card-header title title-background-decoration">{{movie.title}}</h2>
+        <ul class="list-group">
+          <li class="list-group-item item-style" *ngIf="movie.genres.length">
           <span class="field">Genres:
             <span class="genres" *ngFor="let genre of movie.genres">
               {{genre.name}}
             </span>
           </span>
-      </li>
-      <li class="list-group-item item-style">
-        <span class="field">Release Date:</span> {{movie.release_date}}
-      </li>
-      <li class="list-group-item item-style">
-        <span class="field">Overview:</span> {{movie.overview}}
-      </li>
-      <li class="list-group-item item-style" *ngIf="movie.homepage">
-        <a class="field" target="_blank" href="{{movie.homepage}}">
-          Click here to learn more about {{movie.title}}
-        </a>
-      </li>
-    </ul>
-    <button class="btn btn-primary button-style" (click)="back()">Back</button>
-    <img class="card-img" src="{{imageUrl}}" onerror="this.src='assets/img-not-found.png'" alt="">
+          </li>
+          <li class="list-group-item item-style">
+            <span class="field">Release Date:</span> {{movie.release_date}}
+          </li>
+          <li class="list-group-item item-style">
+            <span class="field">Overview:</span> {{movie.overview}}
+          </li>
+          <li class="list-group-item item-style" *ngIf="movie.homepage">
+            <a class="field link" target="_blank" href="{{movie.homepage}}">
+              Click here to learn more about {{movie.title}}
+            </a>
+          </li>
+        </ul>
+        <button class="btn btn-primary button-style" (click)="back()">Back</button>
+        <img class="card-img" src="{{imageUrl}}" onerror="this.src='assets/img-not-found.png'" alt="">
+      </div>
+    </div>
+
+    <div class="job-area-list col-lg-4">
+      <h4 class="title">Explore more</h4>
+      <app-explore (emitCategory)="showCategoryMovies($event)"></app-explore>
+    </div>
   </div>
 </div>

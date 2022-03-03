@@ -1,0 +1,47 @@
+.job-list-right {
+  margin-left: 16px;
+  padding: 15px 20px 15px;
+  border-radius: 5px;
+  border: 1px dashed;
+  box-shadow: 0 0 20px 0 hsla(0, 4%, 51%, 0.45);
+}
+
+.job-list-right:hover {
+  box-shadow: 0 0 20px 0 hsla(0, 6%, 73%, 0.45);
+  transition: all .5s ease;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: #594545;
+  font-family: 'georgia', cursive;
+  margin: 8px 0;
+  font-weight: bold;
+}
+
+.category-style {
+  color: #828788;
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.link:hover {
+  color: #60646c;
+}
+
+@media (max-width: 620px) {
+  .subtitle {
+    font-size: 12px;
+  }
+
+  .category-style {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 620px) {
+  .job-list-right {
+    margin: 0;
+  }
+}

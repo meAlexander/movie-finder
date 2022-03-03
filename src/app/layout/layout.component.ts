@@ -1,6 +1,6 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Category } from '../models/Category';
+import { Category } from '../models/category';
 
 @Component({
   selector: 'app-layout',
@@ -40,7 +40,7 @@ export class LayoutComponent implements OnInit {
     this.showTemplate(this.allMoviesTemplate);
   }
 
-  public backToPreviousPage (category: Observable<Category>): void {
+  public loadPage (category: Observable<Category>): void {
     if (!category) {
       this.showTemplate();
       return;

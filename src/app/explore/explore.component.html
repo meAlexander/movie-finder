@@ -1,0 +1,8 @@
+<div class="job-list-right">
+  <h6 class="subtitle">Browse category</h6>
+  <ul class="list-unstyled">
+    <li *ngFor="let categoryMetadata of categoryMovieMetadata">
+      <a class="link word-break category-style" (click)="showCategory(categoryMetadata)">{{categoryMetadata.name}}</a>
+    </li>
+  </ul>
+</div>

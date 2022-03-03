@@ -1,9 +1,9 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { take } from 'rxjs/operators';
+
 import { MovieService } from '../services/movie.service';
-import { Category } from '../models/Category';
+import { Category } from '../models/category';
 
 @Component({
   selector: 'app-home-page',
@@ -14,21 +14,17 @@ export class HomePageComponent implements OnInit {
   @Output() public goToMovieDetailsEvent = new EventEmitter();
   @Output() public goToCategoryMoviesEvent = new EventEmitter<Observable<Category>>();
 
-  private popularMovies$: Observable<Category>;
-  private inTheaterMovies$: Observable<Category>;
-  private popularKidsMovies$: Observable<Category>;
-  private topRatedMovies$: Observable<Category>;
   public allMovies$: Observable<Category>[] = [];
 
-  constructor (private movieService: MovieService) { }
+  constructor (private movieService: MovieService) {
+  }
 
   ngOnInit () {
     this.prepareMovies();
-    this.allMovies$.push(this.popularMovies$, this.inTheaterMovies$, this.popularKidsMovies$, this.topRatedMovies$);
   }
 
   public showMovieDetailsPage (movieId: number): void {
-    this.goToMovieDetailsEvent.emit({ movieId, category: undefined});
+    this.goToMovieDetailsEvent.emit({movieId, category: undefined});
   }
 
   public showCategoryMoviesPage (category$: Observable<Category>): void {
@@ -42,13 +38,8 @@ export class HomePageComponent implements OnInit {
   }
 
   private prepareMovies (): void {
-    this.popularMovies$ = this.movieService.getPopularMovies()
-      .pipe(take(1));
-    this.inTheaterMovies$ = this.movieService.getInTheaterMovies()
-      .pipe(take(1));
-    this.popularKidsMovies$ = this.movieService.getPopularKidsMovies()
-      .pipe(take(1));
-    this.topRatedMovies$ = this.movieService.getTopRatedMovies()
-      .pipe(take(1));
+    for (const categoryMetadata of this.movieService.getCategoryMetadata()) {
+      this.allMovies$.push(this.movieService.getMoviesBaseQuery(categoryMetadata));
+    }
   }
 }

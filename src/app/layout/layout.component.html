@@ -17,7 +17,7 @@
   <app-movie-details-card
     [movieId]="movieId"
     [category$]="category$"
-    (emitBack)="backToPreviousPage($event)">
+    (emitCategory)="loadPage($event)">
   </app-movie-details-card>
 </ng-template>
 

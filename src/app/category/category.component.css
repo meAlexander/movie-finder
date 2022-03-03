@@ -15,21 +15,21 @@
   background-color: #3c424d;
 }
 
-@media (max-width: 1272px) {
+@media (max-width: 1182px) {
   .movie-card-width {
     flex: 0 0 auto;
     width: 33.333333%;
   }
 }
 
-@media (max-width: 752px) {
+@media (max-width: 612px) {
   .movie-card-width {
     flex: 0 0 auto;
     width: 50%;
   }
 }
 
-@media (max-width: 452px) {
+@media (max-width: 312px) {
   .movie-card-width {
     flex: 1 1 auto;
     width: 75%;

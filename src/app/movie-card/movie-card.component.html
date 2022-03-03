@@ -7,7 +7,7 @@
   <div class="card-body movie-card-design">
     <img class="card-img" [src]="imageUrl" (load)="loadingImage()" onerror="this.src='assets/img-not-found.png'" alt="">
     <app-loading *ngIf="loadImage"></app-loading>
-    <h6 class="decoration">Release date:
+    <h6 class="release-date">Release date:
       <span>{{movie.release_date}}</span>
     </h6>
   </div>

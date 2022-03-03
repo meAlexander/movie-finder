@@ -33,9 +33,10 @@ h1 {
 .input {
   border: 1px #686a6c;
   font-family: 'georgia', cursive;
-  color: #AEB5BB7C;
-  font-size: 1.2em;
+  font-size: 1.4em;
   background: #888A8D7C;
+  transition: all .5s ease;
+  box-shadow: none;
 }
 .form-control::placeholder {
   color: #878f8f;
@@ -55,4 +56,5 @@ h1 {
 .search-box {
   border: 3px solid #3a3e41;
   background: radial-gradient(circle, rgb(145 131 149 / 0%) 12%, rgb(0 0 0 / 0%) 90%);
+  box-shadow: #4b2b2b;
 }

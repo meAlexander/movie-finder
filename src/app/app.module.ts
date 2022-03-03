@@ -15,6 +15,7 @@ import { CategoryComponent } from './category/category.component';
 import { MovieDetailsCardComponent } from './movie-details-card/movie-details-card.component';
 import { AllMoviesComponent } from './all-movies/all-movies.component';
 import { LoadingComponent } from './loading/loading.component';
+import { ExploreComponent } from './explore/explore.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { LoadingComponent } from './loading/loading.component';
     CategoryComponent,
     MovieDetailsCardComponent,
     AllMoviesComponent,
-    LoadingComponent
+    LoadingComponent,
+    ExploreComponent
   ],
   imports: [
     BrowserModule,

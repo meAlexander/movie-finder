@@ -2,6 +2,11 @@
   width: 65%;
 }
 
+.card-img:hover {
+  transform: scale(1.2);
+  transition: all 0.6s 0.1s linear;
+}
+
 .movie-card-design {
   text-align: center;
 }
@@ -11,12 +16,12 @@
   background: radial-gradient(circle, rgb(63 59 69 / 78%) 6%, rgba(97,99,113,0.846673703661152) 67%)
 }
 
-.decoration {
+.release-date {
   padding-top: 8px;
   font-size: 16px;
 }
 
-.decoration > span {
+.release-date > span {
   color: #4b2b2b;
 }
 
@@ -46,4 +51,25 @@
 
 .card-color {
   background: radial-gradient(circle, rgb(177 165 180) 12%, rgb(4 3 3 / 33%) 90%)
+}
+
+.card:hover {
+  box-shadow: 0 0 20px 0 hsla(0, 6%, 73%, 0.45);
+  transition: all .2s ease;
+}
+
+@media (max-width: 1290px) {
+  .release-date {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 1012px) {
+  .release-date {
+    font-size: 12px;
+  }
+
+  .button-style {
+    font-size: 14px;
+  }
 }
