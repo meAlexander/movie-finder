@@ -14,11 +14,11 @@
 </ng-template>
 
 <ng-template #movieDetailsCard>
-  <app-movie-details-card
+  <app-movie-details
     [movieId]="movieId"
     [category$]="category$"
     (emitCategory)="loadPage($event)">
-  </app-movie-details-card>
+  </app-movie-details>
 </ng-template>
 
 <ng-template #allMovies>

@@ -1,0 +1,24 @@
+h1 {
+  text-align: center;
+}
+
+.button-style {
+  background-color: #606264;
+  border-color: #33292900;
+  color: darkgray;
+  font-family: "georgia", cursive;
+  font-weight: bold;
+}
+
+.button-style:hover {
+  background-color: #3c424d;
+}
+
+.explore-title {
+  text-align: center;
+  font-size: 1.5em;
+  color: darkgrey;
+  font-family: 'georgia', cursive;
+  margin: 16px 0;
+  font-weight: bold;
+}

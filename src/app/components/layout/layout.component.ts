@@ -1,6 +1,6 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Category } from '../models/category';
+import { Category } from '../../shared/models/category';
 
 @Component({
   selector: 'app-layout',
@@ -8,11 +8,10 @@ import { Category } from '../models/category';
   styleUrls: ['./layout.component.css']
 })
 export class LayoutComponent implements OnInit {
-  private _mainTemplate: TemplateRef<any>;
-
   @ViewChild('homePage', { static: true }) private readonly homePageTemplate: TemplateRef<any>;
   @ViewChild('movieDetailsCard', { static: true }) private readonly movieDetailsCardTemplate: TemplateRef<any>;
   @ViewChild('allMovies', { static: true }) private readonly allMoviesTemplate: TemplateRef<any>;
+  private _mainTemplate: TemplateRef<any>;
 
   public movieId: number;
   public category$: Observable<Category>;

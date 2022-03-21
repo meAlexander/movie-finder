@@ -1,0 +1,15 @@
+<app-search-box
+  (goToCategoryMoviesEvent)="showCategoryMoviesPage($event)">
+</app-search-box>
+
+<div class="list-group">
+  <h1 class="display-5 explore-title">Explore Our Movies</h1>
+</div>
+
+<div *ngFor="let movie$ of allMovies$">
+  <app-category
+    [category$]="movie$"
+    (emitMovieId)="showMovieDetailsPage($event)"
+    (emitCategory)="showCategoryMoviesPage($event)">
+  </app-category>
+</div>

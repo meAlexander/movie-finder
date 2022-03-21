@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Category } from '../models/category';
-import { MovieService } from '../services/movie.service';
-import { CategoryMovieMetadata } from '../constants/category-movie-metadata';
+import { Category } from '../../shared/models/category';
+import { MovieService } from '../../services/movie.service';
+import { CategoryMovieMetadata } from '../../shared/constants/category-movie-metadata';
 
 @Component({
   selector: 'app-all-movies',
@@ -15,8 +15,7 @@ export class AllMoviesComponent {
   @Output() public goToMovieDetailsEvent = new EventEmitter();
   @Output() public backToHomeEvent = new EventEmitter();
 
-  constructor (private movieService: MovieService) {
-  }
+  constructor (private movieService: MovieService) { }
 
   public showMovieDetailsPage (movieId: number): void {
     this.goToMovieDetailsEvent.emit({ movieId, category: this.category$ });

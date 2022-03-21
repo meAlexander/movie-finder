@@ -2,11 +2,11 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Movie } from '../models/movie';
-import { ResponseAPI } from '../models/response-api';
-import { Category } from '../models/category';
-import { CATEGORY_MOVIES_METADATA } from '../constants/category-movies-metadata.const';
-import { CategoryMovieMetadata } from '../constants/category-movie-metadata';
+import { Movie } from '../shared/models/movie';
+import { ResponseAPI } from '../shared/models/response-api';
+import { Category } from '../shared/models/category';
+import { CATEGORY_MOVIES_METADATA } from '../shared/constants/category-movies-metadata.const';
+import { CategoryMovieMetadata } from '../shared/constants/category-movie-metadata';
 
 @Injectable({
   providedIn: 'root'

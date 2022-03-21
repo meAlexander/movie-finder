@@ -5,17 +5,18 @@ import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 
-import { NavbarComponent } from './navbar/navbar.component';
-import { FooterComponent } from './footer/footer.component';
+import { NavbarComponent } from './components/shared/navbar/navbar.component';
+import { FooterComponent } from './components/shared/footer/footer.component';
 
-import { MovieCardComponent } from './movie-card/movie-card.component';
-import { HomePageComponent } from './home/home-page.component';
-import { LayoutComponent } from './layout/layout.component';
-import { CategoryComponent } from './category/category.component';
-import { MovieDetailsCardComponent } from './movie-details-card/movie-details-card.component';
-import { AllMoviesComponent } from './all-movies/all-movies.component';
-import { LoadingComponent } from './loading/loading.component';
-import { ExploreComponent } from './explore/explore.component';
+import { MovieCardComponent } from './components/movie-card/movie-card.component';
+import { HomePageComponent } from './components/home/home-page.component';
+import { LayoutComponent } from './components/layout/layout.component';
+import { CategoryComponent } from './components/category/category.component';
+import { MovieDetailsComponent } from './components/movie-details/movie-details.component';
+import { AllMoviesComponent } from './components/all-movies/all-movies.component';
+import { LoadingComponent } from './components/shared/loading/loading.component';
+import { ExploreComponent } from './components/explore/explore.component';
+import { SearchBoxComponent } from './components/search-box/search-box.component';
 
 @NgModule({
   declarations: [
@@ -26,10 +27,11 @@ import { ExploreComponent } from './explore/explore.component';
     MovieCardComponent,
     FooterComponent,
     CategoryComponent,
-    MovieDetailsCardComponent,
+    MovieDetailsComponent,
     AllMoviesComponent,
     LoadingComponent,
-    ExploreComponent
+    ExploreComponent,
+    SearchBoxComponent
   ],
   imports: [
     BrowserModule,

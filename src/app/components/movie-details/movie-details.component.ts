@@ -2,16 +2,16 @@ import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { take } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
-import { Movie } from '../models/movie';
-import { MovieService } from '../services/movie.service';
-import { Category } from '../models/category';
+import { Movie } from '../../shared/models/movie';
+import { MovieService } from '../../services/movie.service';
+import { Category } from '../../shared/models/category';
 
 @Component({
-  selector: 'app-movie-details-card',
-  templateUrl: './movie-details-card.component.html',
-  styleUrls: ['./movie-details-card.component.css']
+  selector: 'app-movie-details',
+  templateUrl: './movie-details.component.html',
+  styleUrls: ['./movie-details.component.css']
 })
-export class MovieDetailsCardComponent implements OnInit {
+export class MovieDetailsComponent implements OnInit {
   @Input() public movieId: number;
   @Input() public category$: Observable<Category>;
   @Output() public emitCategory = new EventEmitter<Observable<Category>>();
@@ -19,7 +19,7 @@ export class MovieDetailsCardComponent implements OnInit {
   public movie: Movie;
   public imageUrl: string;
 
-  constructor (private movieService: MovieService) {}
+  constructor (private movieService: MovieService) { }
 
   ngOnInit () {
     this.movieService.getMovieDetails(this.movieId)
@@ -34,7 +34,7 @@ export class MovieDetailsCardComponent implements OnInit {
     this.emitCategory.emit(this.category$);
   }
 
-  showCategoryMovies (category: Observable<Category>): void {
+  public showCategoryMovies (category: Observable<Category>): void {
     this.emitCategory.emit(category);
   }
 }

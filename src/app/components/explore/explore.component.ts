@@ -1,9 +1,9 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { Category } from '../models/category';
-import { MovieService } from '../services/movie.service';
-import { CategoryMovieMetadata } from '../constants/category-movie-metadata';
+import { Category } from '../../shared/models/category';
+import { MovieService } from '../../services/movie.service';
+import { CategoryMovieMetadata } from '../../shared/constants/category-movie-metadata';
 
 @Component({
   selector: 'app-explore',
@@ -14,10 +14,9 @@ export class ExploreComponent implements OnInit {
   @Output() public emitCategory = new EventEmitter<Observable<Category>>();
   public categoryMovieMetadata: CategoryMovieMetadata[];
 
-  constructor (public movieService: MovieService) {
-  }
+  constructor (public movieService: MovieService) { }
 
-  ngOnInit (): void {
+  ngOnInit () {
     this.categoryMovieMetadata = this.movieService.getCategoryMetadata();
   }
 

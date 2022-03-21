@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Category } from '../models/category';
+import { Category } from '../../shared/models/category';
 
 @Component({
   selector: 'app-category',

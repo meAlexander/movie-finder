@@ -9,6 +9,7 @@
       <h2 class="title">Movie details</h2>
       <div class="card">
         <h2 class="card-header title title-background-decoration">{{movie.title}}</h2>
+
         <ul class="list-group">
           <li class="list-group-item item-style" *ngIf="movie.genres.length">
           <span class="field">Genres:
@@ -29,6 +30,7 @@
             </a>
           </li>
         </ul>
+
         <button class="btn btn-primary button-style" (click)="back()">Back</button>
         <img class="card-img" src="{{imageUrl}}" onerror="this.src='assets/img-not-found.png'" alt="">
       </div>
